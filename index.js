@@ -5,6 +5,12 @@ const chance = new Chance();
 const urls = {};
 
 app.get('/new/*', (req, res) => {
+  const urlRegex = /^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/
+
+  if (!urlRegex.test(url) && !(JSON.parse(req.query.allow))) {
+    return res.send('url not valid');
+  }
+
   const url = req.path.slice(5);
   for (const key in urls) {
     if (urls[key] === url) {
@@ -14,6 +20,7 @@ app.get('/new/*', (req, res) => {
       });
     }
   }
+
   const short = chance.string({length: 5, pool: 'abcdefghijklmnopqrstuvwxyz'});
   urls[short] = url;
   console.log(`shortened ${url} to ${short}`);
