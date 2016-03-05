@@ -5,13 +5,15 @@ const chance = new Chance();
 const urls = {};
 
 app.get('/new/*', (req, res) => {
-  const urlRegex = /^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/
+  const url = req.path.slice(5);
+  const urlRegex = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/
 
-  if (!urlRegex.test(url) && !(JSON.parse(req.query.allow))) {
+  const allow = req.query.allow ? JSON.parse(req.query.allow) : false;
+
+  if (!urlRegex.test(url) && !(allow)) {
     return res.send('url not valid');
   }
 
-  const url = req.path.slice(5);
   for (const key in urls) {
     if (urls[key] === url) {
       return res.send({
