@@ -17,10 +17,10 @@ app.get('/new/*', (req, res) => {
   const short = chance.string({length: 5, pool: 'abcdefghijklmnopqrstuvwxyz'});
   urls[short] = url;
   console.log(`shortened ${url} to ${short}`);
-  res.send({
+  res.send(JSON.stringify({
     'original_url': url,
     'short_url': `${req.hostname}/${short}`
-  });
+  }));
 });
 
 app.get('/:short', (req, res) => {
