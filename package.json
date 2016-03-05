@@ -1,0 +1,33 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "Free Code Camp project",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava test.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphashuro/url-shortener.git"
+  },
+  "keywords": [],
+  "author": "Alpha Shuro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alphashuro/url-shortener/issues"
+  },
+  "homepage": "https://github.com/alphashuro/url-shortener#readme",
+  "devDependencies": {
+    "ava": "^0.12.0"
+  },
+  "dependencies": {
+    "chance": "^1.0.1",
+    "express": "^4.13.4"
+  },
+  "xo": {
+    "esnext": true,
+    "spaces": true
+  }
+}
